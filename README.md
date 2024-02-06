@@ -7,7 +7,10 @@
 **Step 1: Launch EC2 (Ubuntu 22.04):**
 
 - Provision an EC2 instance on AWS with Ubuntu 22.04.
+- Instance type = T2.large
+- Open the Ports in Security Group = 8081(Docker), 8080(Jenkins), 9000(Sonarqube)
 - Connect to the instance using SSH.
+
 
 **Step 2: Clone the Code:**
 
@@ -18,6 +21,8 @@
     git clone https://github.com/mohanvedase/Netflix-DevSecOps_project.git
     ```
     
+    ![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/70dd635e-8c9c-4e28-a7a2-f8562b77d4cd)
+
 
 **Step 3: Install Docker and Run the App Using a Container:**
 
@@ -59,6 +64,11 @@ Now recreate the Docker image with your api key:
 ```
 docker build --build-arg TMDB_V3_API_KEY=<your-api-key> -t netflix .
 ```
+
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/10d81187-14b8-4f28-99f8-f3aa6a414dbb)
+
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/7189c52e-b6b5-4c1c-9e59-9d4a374ddde1)
+
 
 **Phase 2: Security**
 
@@ -138,6 +148,9 @@ Install below plugins
 
 4 Email Extension Plugin
 
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/9194e242-a534-4c14-b1e5-bd4aab43ad67)
+
+
 ### **Configure Java and Nodejs in Global Tool Configuration**
 
 Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on Apply and Save
@@ -145,19 +158,32 @@ Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on App
 
 ### SonarQube
 
+http://IPaddress:9000/admin/users 
+
+Click on Token
+
 Create the token
+
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/16b33cb7-ba0a-4e2d-acce-3eea8e0a9bea)
 
 Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. It should look like this
 
 After adding sonar token
 
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/7cdb2a33-f8f6-4a74-b44d-11a480404e18)
+
+
 Click on Apply and Save
 
 **The Configure System option** is used in Jenkins to configure different server
 
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/9a77aa99-1ef0-4c05-9e93-fa60a1e1654b)
+
+
 **Global Tool Configuration** is used to configure different tools that we install using Plugins
 
 We will install a sonar scanner in the tools.
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/d095eec2-6a8c-477d-8f2b-c60659c0ae2e)
 
 Create a Jenkins webhook
 
@@ -208,6 +234,10 @@ pipeline {
     }
 }
 ```
+
+After the pipeline run succesfully
+
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/197bdc4d-e505-4543-b1b6-b694f0df77c1)
 
 Certainly, here are the instructions without step numbers:
 
@@ -339,6 +369,9 @@ sudo systemctl restart jenkins
 
 
 ```
+
+![image](https://github.com/mohanvedase/Netflix-DevSecOps_project/assets/139565500/c30d88a5-5b19-401f-84c6-44c41c48a764)
+
 
 **Phase 4: Monitoring**
 
